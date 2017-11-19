@@ -11,6 +11,9 @@ import UIKit
 struct M3U8StreamInfo {
     
     var resolution: CGSize
+    var bandwidth: Int
+    var audio: String?
+    var uri: URL?
     
     init(dictionary: [String: String]) {
         
@@ -21,6 +24,18 @@ struct M3U8StreamInfo {
             resolution = CGSize(width: width, height: height)
         } else {
             resolution = .zero
+        }
+        
+        if let bandwidthString = dictionary[Constants.M3U8Playlist.bandwidth],
+            let bandwidth = Int(bandwidthString) {
+            self.bandwidth = bandwidth
+        } else {
+            self.bandwidth = 0
+        }
+        
+        self.audio = dictionary[Constants.M3U8Playlist.audio]
+        if let uriString = dictionary[Constants.M3U8Playlist.uri] {
+            self.uri = URL(string: uriString)
         }
     }
 }

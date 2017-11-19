@@ -16,6 +16,7 @@ struct M3U8MasterPlaylist {
     var version: String?
     
     var streamList: [M3U8StreamInfo]
+    var mediaList: [M3U8MediaInfo]
     
     /// init with valid master m3u8 `url`
     /// returns `nil` if input `url` is invalid
@@ -37,6 +38,7 @@ struct M3U8MasterPlaylist {
         self.content = content
         self.baseURL = baseURL
         self.streamList = []
+        self.mediaList = []
         self.parsePlaylistData()
     }
     
@@ -63,6 +65,17 @@ struct M3U8MasterPlaylist {
                 
                 let streamInfo = M3U8StreamInfo(dictionary: attributes)
                 self.streamList.append(streamInfo)
+            }
+            // #EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID="600k",LANGUAGE="eng",NAME="Audio",AUTOSELECT=YES,DEFAULT=YES,URI="/talks/769/audio/600k.m3u8?sponsor=Ripple",BANDWIDTH=614400
+            else if let range = line.range(of: Constants.M3U8Playlist.media) {
+                
+                let mediaLine = String(line[range.upperBound..<line.endIndex])
+                var attributes = mediaLine.attributes
+                attributes[Constants.M3U8Playlist.baseURL] = self.baseURL.absoluteString
+                attributes[Constants.M3U8Playlist.m3u8URL] = self.originalURL?.absoluteString
+                
+                let mediaInfo = M3U8MediaInfo(dictionary: attributes)
+                self.mediaList.append(mediaInfo)
             }
             
         }

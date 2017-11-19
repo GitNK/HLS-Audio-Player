@@ -60,11 +60,38 @@ class M3U8MasterPlaylistTests: XCTestCase {
     
     func test_StreamListCount_Is6() {
         let playlist = M3U8MasterPlaylist(url: masterURL2)!
-        XCTAssertEqual(playlist.streamList.count, 6)
+        XCTAssertEqual(playlist.streamList.count, 6, "Number of streams should be 6")
     }
     
-    func test_StreamListFirstItemResolution_Is960x540(){
+    func test_StreamListFirstItemResolution_Is_960x540(){
         XCTAssertEqual(masterPlaylist.streamList.first?.resolution, CGSize(width: 960, height: 540), "Resolution of first stream should be 960x540")
     }
     
+    func test_StreamListFirstItemBandwidth_Is_2227464() {
+        XCTAssertEqual(masterPlaylist.streamList.first?.bandwidth, 2227464, "Bandwidth of first stream should be 2227464")
+    }
+    
+    func test_StreamListFirstItemAudio_Is_aud1() {
+        XCTAssertEqual(masterPlaylist.streamList.first?.audio, "aud1", "Audio of first stream should be aud1")
+    }
+    
+    func test_StreamListFirstItemURI() {
+        XCTAssertEqual(masterPlaylist.streamList.first?.uri, URL(string: "v5/prog_index.m3u8"), "URI of first stream should be v5/prog_index.m3u8")
+    }
+    
+    func test_MediaListCount_Is5() {
+        XCTAssertEqual(masterPlaylist.mediaList.count, 5, "Number of media should be 5")
+    }
+    
+    func test_MediaListCount_Is10() {
+        let playlist = M3U8MasterPlaylist(url: masterURL2)!
+        XCTAssertEqual(playlist.mediaList.count, 10, "Number of media should be 10")
+    }
+    
+    func test_MediaListFirstItemGroup_Is_aud1() {
+        XCTAssertEqual(masterPlaylist.mediaList.first?.groupID, "aud1", "Group id of first media should be aud1")
+    }
+    func test_MediaListFirstItemURI() {
+        XCTAssertEqual(masterPlaylist.mediaList.first?.uri, URL(string: "a1/prog_index.m3u8")!)
+    }
 }

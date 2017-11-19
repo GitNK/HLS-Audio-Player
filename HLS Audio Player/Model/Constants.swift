@@ -22,5 +22,9 @@ struct Constants {
         static let baseURL: String = "baseURL"
         static let media: String = "#EXT-X-MEDIA:"
         static let uri: String = "URI"
+        static let bandwidth: String = "BANDWIDTH"
+        static let audio: String = "AUDIO"
+        static let mediaType: String = "TYPE"
+        static let groupID: String = "GROUP-ID"
     }
 }
