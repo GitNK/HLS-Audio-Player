@@ -11,7 +11,8 @@ import XCTest
 
 class M3U8PlaylistTests: XCTestCase {
     
-    let masterStreamURL = URL(string: "https://devstreaming-cdn.apple.com/videos/streaming/examples/img_bipbop_adv_example_ts/master.m3u8")!
+    let masterURL = URL(string: "https://devstreaming-cdn.apple.com/videos/streaming/examples/img_bipbop_adv_example_ts/master.m3u8")!
+    let mediaURL = URL(string: "https://devstreaming-cdn.apple.com/videos/streaming/examples/img_bipbop_adv_example_ts/a1/prog_index.m3u8")!
     
     override func setUp() {
         super.setUp()
@@ -23,11 +24,6 @@ class M3U8PlaylistTests: XCTestCase {
         super.tearDown()
     }
     
-    func test_Init_WhenGivenValidURL_ReturnsInstance() {
-        let playlist = M3U8Playlist(url: masterStreamURL)
-        XCTAssertNotNil(playlist, "Should init with valid URL")
-    }
-    
     func test_Init_WhenGivenInvalidURL_ReturnsNil() {
         let invalidURL = URL(string: "http://example.com/")!
         let playlist = M3U8Playlist(url: invalidURL)
@@ -35,23 +31,37 @@ class M3U8PlaylistTests: XCTestCase {
     }
     
     func test_Init_WhenGivenURL_SetsOriginalURL() {
-        let playlist = M3U8Playlist(url: masterStreamURL)!
-        XCTAssertEqual(playlist.originalURL, masterStreamURL, "Should set original URL")
+        let playlist = M3U8Playlist(url: masterURL)!
+        XCTAssertEqual(playlist.originalURL, masterURL, "Should set original URL")
     }
     
     func test_Init_WhenGivenURL_SetsBaseURL() {
-        let playlist = M3U8Playlist(url: masterStreamURL)!
-        XCTAssertEqual(playlist.baseURL, masterStreamURL.deletingLastPathComponent(), "Should set base url")
+        let playlist = M3U8Playlist(url: masterURL)!
+        XCTAssertEqual(playlist.baseURL, masterURL.deletingLastPathComponent(), "Should set base url")
     }
     
     func test_Init_WhenGivenValidContent_ReturnsInstance() {
-        let m3u8Content = "\(Constants.M3U8Playlist.identifier)"
-        XCTAssertNotNil(M3U8Playlist(content: m3u8Content, baseURL: masterStreamURL.deletingLastPathComponent()), "Should init with valid content")
+        let m3u8Content = Constants.M3U8Playlist.identifier
+        XCTAssertNotNil(M3U8Playlist(content: m3u8Content, baseURL: masterURL.deletingLastPathComponent()), "Should init with valid content")
     }
     
     func test_Init_WhenGivenInvalidContent_ReturnsNil() {
         let invalidContent = "This is not a valid content for M3U8 Playlist"
-        XCTAssertNil(M3U8Playlist(content: invalidContent, baseURL: masterStreamURL.deletingLastPathComponent()), "Should return nil on invalid content")
+        XCTAssertNil(M3U8Playlist(content: invalidContent, baseURL: masterURL.deletingLastPathComponent()), "Should return nil on invalid content")
+    }
+    
+    func test_Init_WhenGivenMasterPlaylist_SetsMasterPlaylist() {
+        let playlist = M3U8Playlist(url: masterURL)!
+        XCTAssertNotNil(playlist.mainMediaPlaylist, "Should set mainMedia playlist")
+        XCTAssertNotNil(playlist.masterPlaylist, "Should set mainMedia playlist")
+        XCTAssertNotNil(playlist.audioPlaylist, "Should set audio playlist")
+    }
+    
+    func test_Init_WhenGivenMediaPlaylist_SetsMediaPlaylist() {
+        let playlist = M3U8Playlist(url: mediaURL)!
+        XCTAssertNotNil(playlist.mainMediaPlaylist, "Should set mainMedia playlist")
+        XCTAssertNil(playlist.masterPlaylist, "Should not set mainMedia playlist")
+        XCTAssertNil(playlist.audioPlaylist, "Should not set audio playlist")
     }
     
 }

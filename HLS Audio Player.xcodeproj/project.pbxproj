@@ -9,8 +9,13 @@
 /* Begin PBXBuildFile section */
 		4C516A891FC1AA99004BA565 /* M3U8PlaylistTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C516A881FC1AA99004BA565 /* M3U8PlaylistTests.swift */; };
 		4C516A8D1FC1AF1C004BA565 /* M3U8Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C516A8C1FC1AF1C004BA565 /* M3U8Playlist.swift */; };
-		4C516A8F1FC1C0EB004BA565 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C516A8E1FC1C0EB004BA565 /* File.swift */; };
+		4C516A8F1FC1C0EB004BA565 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C516A8E1FC1C0EB004BA565 /* Constants.swift */; };
 		4C516A911FC1C19E004BA565 /* String+m3u8.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C516A901FC1C19E004BA565 /* String+m3u8.swift */; };
+		4C516A941FC1E2CE004BA565 /* M3U8MasterPlaylist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C516A931FC1E2CE004BA565 /* M3U8MasterPlaylist.swift */; };
+		4C516A961FC1E2DF004BA565 /* M3U8MediaPlaylist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C516A951FC1E2DF004BA565 /* M3U8MediaPlaylist.swift */; };
+		4C516A981FC1EE39004BA565 /* M3U8MasterPlaylistTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C516A971FC1EE39004BA565 /* M3U8MasterPlaylistTests.swift */; };
+		4C516A9A1FC1F6DD004BA565 /* M3U8StreamInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C516A991FC1F6DD004BA565 /* M3U8StreamInfo.swift */; };
+		4C516A9D1FC21CEA004BA565 /* UtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C516A9C1FC21CEA004BA565 /* UtilsTests.swift */; };
 		4CE001D91FC0C09900740A5E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE001D81FC0C09900740A5E /* AppDelegate.swift */; };
 		4CE001DB1FC0C09900740A5E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE001DA1FC0C09900740A5E /* ViewController.swift */; };
 		4CE001DE1FC0C09900740A5E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4CE001DC1FC0C09900740A5E /* Main.storyboard */; };
@@ -31,8 +36,13 @@
 /* Begin PBXFileReference section */
 		4C516A881FC1AA99004BA565 /* M3U8PlaylistTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = M3U8PlaylistTests.swift; sourceTree = "<group>"; };
 		4C516A8C1FC1AF1C004BA565 /* M3U8Playlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = M3U8Playlist.swift; sourceTree = "<group>"; };
-		4C516A8E1FC1C0EB004BA565 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
+		4C516A8E1FC1C0EB004BA565 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		4C516A901FC1C19E004BA565 /* String+m3u8.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+m3u8.swift"; sourceTree = "<group>"; };
+		4C516A931FC1E2CE004BA565 /* M3U8MasterPlaylist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = M3U8MasterPlaylist.swift; sourceTree = "<group>"; };
+		4C516A951FC1E2DF004BA565 /* M3U8MediaPlaylist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = M3U8MediaPlaylist.swift; sourceTree = "<group>"; };
+		4C516A971FC1EE39004BA565 /* M3U8MasterPlaylistTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = M3U8MasterPlaylistTests.swift; sourceTree = "<group>"; };
+		4C516A991FC1F6DD004BA565 /* M3U8StreamInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = M3U8StreamInfo.swift; sourceTree = "<group>"; };
+		4C516A9C1FC21CEA004BA565 /* UtilsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilsTests.swift; sourceTree = "<group>"; };
 		4CE001D51FC0C09900740A5E /* HLS Audio Player.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HLS Audio Player.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CE001D81FC0C09900740A5E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4CE001DA1FC0C09900740A5E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -66,6 +76,7 @@
 			isa = PBXGroup;
 			children = (
 				4C516A881FC1AA99004BA565 /* M3U8PlaylistTests.swift */,
+				4C516A971FC1EE39004BA565 /* M3U8MasterPlaylistTests.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -74,7 +85,10 @@
 			isa = PBXGroup;
 			children = (
 				4C516A8C1FC1AF1C004BA565 /* M3U8Playlist.swift */,
-				4C516A8E1FC1C0EB004BA565 /* File.swift */,
+				4C516A931FC1E2CE004BA565 /* M3U8MasterPlaylist.swift */,
+				4C516A951FC1E2DF004BA565 /* M3U8MediaPlaylist.swift */,
+				4C516A991FC1F6DD004BA565 /* M3U8StreamInfo.swift */,
+				4C516A8E1FC1C0EB004BA565 /* Constants.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -85,6 +99,14 @@
 				4C516A901FC1C19E004BA565 /* String+m3u8.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		4C516A9B1FC21CC4004BA565 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				4C516A9C1FC21CEA004BA565 /* UtilsTests.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		4CE001CC1FC0C09900740A5E = {
@@ -123,6 +145,7 @@
 		4CE001EC1FC0C09900740A5E /* HLS Audio PlayerTests */ = {
 			isa = PBXGroup;
 			children = (
+				4C516A9B1FC21CC4004BA565 /* Utils */,
 				4C516A8A1FC1AC52004BA565 /* Model */,
 				4CE001EF1FC0C09900740A5E /* Info.plist */,
 			);
@@ -232,9 +255,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C516A941FC1E2CE004BA565 /* M3U8MasterPlaylist.swift in Sources */,
 				4C516A911FC1C19E004BA565 /* String+m3u8.swift in Sources */,
+				4C516A961FC1E2DF004BA565 /* M3U8MediaPlaylist.swift in Sources */,
 				4C516A8D1FC1AF1C004BA565 /* M3U8Playlist.swift in Sources */,
-				4C516A8F1FC1C0EB004BA565 /* File.swift in Sources */,
+				4C516A9A1FC1F6DD004BA565 /* M3U8StreamInfo.swift in Sources */,
+				4C516A8F1FC1C0EB004BA565 /* Constants.swift in Sources */,
 				4CE001DB1FC0C09900740A5E /* ViewController.swift in Sources */,
 				4CE001D91FC0C09900740A5E /* AppDelegate.swift in Sources */,
 			);
@@ -244,7 +270,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C516A981FC1EE39004BA565 /* M3U8MasterPlaylistTests.swift in Sources */,
 				4C516A891FC1AA99004BA565 /* M3U8PlaylistTests.swift in Sources */,
+				4C516A9D1FC21CEA004BA565 /* UtilsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

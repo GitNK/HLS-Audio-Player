@@ -13,6 +13,11 @@ struct M3U8Playlist {
     var originalURL: URL?
     let baseURL: URL
     
+    var masterPlaylist: M3U8MasterPlaylist?
+    
+    var mainMediaPlaylist: M3U8MediaPlaylist?
+    var audioPlaylist: M3U8MediaPlaylist?
+    
     /// init with valid m3u8 `url`
     /// returns `nil` if input `url` is invalid
     init?(url: URL) {
@@ -31,5 +36,19 @@ struct M3U8Playlist {
             return nil
         }
         self.baseURL = baseURL
+        
+        if content.isMasterPlaylist {
+            
+            self.masterPlaylist = M3U8MasterPlaylist(content: content, baseURL: baseURL)
+            self.audioPlaylist = M3U8MediaPlaylist()
+            self.mainMediaPlaylist = M3U8MediaPlaylist()
+            
+        } else if content.isMediaPlaylist {
+            
+            self.mainMediaPlaylist = M3U8MediaPlaylist()
+        }
+        
+        
+        
     }
 }

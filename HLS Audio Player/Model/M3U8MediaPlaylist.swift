@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  M3U8MediaPlaylist.swift
 //  HLS Audio Player
 //
 //  Created by nk on 11/19/17.
@@ -8,10 +8,6 @@
 
 import Foundation
 
-struct Constants {
+struct M3U8MediaPlaylist {
     
-    struct M3U8Playlist {
-        
-        static let identifier: String = "#EXTM3U"
-    }
 }
