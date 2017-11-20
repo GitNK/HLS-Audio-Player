@@ -32,7 +32,7 @@ class M3U8PlaylistTests: XCTestCase {
     
     func test_Init_WhenGivenURL_SetsOriginalURL() {
         let playlist = M3U8Playlist(url: URL(string: "http://pubcache1.arkiva.de/test/hls_index.m3u8")!)!
-        XCTAssertEqual(playlist.originalURL, masterURL, "Should set original URL")
+        XCTAssertEqual(playlist.originalURL, URL(string: "http://pubcache1.arkiva.de/test/hls_index.m3u8")!, "Should set original URL")
     }
     
     func test_Init_WhenGivenURL_SetsBaseURL() {
@@ -62,5 +62,11 @@ class M3U8PlaylistTests: XCTestCase {
         XCTAssertNotNil(playlist.mainMediaPlaylist, "Should set mainMedia playlist")
         XCTAssertNil(playlist.masterPlaylist, "Should not set mainMedia playlist")
         XCTAssertNil(playlist.audioPlaylist, "Should not set audio playlist")
+    }
+    
+    func test_BestQualityAudio_IsBasedOnStreamBandwidth() {
+        let url = URL(string: "http://pubcache1.arkiva.de/test/hls_index.m3u8")!
+        let playlist = M3U8Playlist(url: url)!
+        XCTAssertEqual(playlist.bestQualityAudio?.originalURL, URL(string: "hls_a256K_v4.m3u8", relativeTo: url.deletingLastPathComponent()))
     }
 }
