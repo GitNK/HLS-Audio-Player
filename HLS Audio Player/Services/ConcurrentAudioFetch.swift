@@ -138,6 +138,8 @@ class ConcurrentAudioFetch {
             bcf.countStyle = .file
             let string = bcf.string(fromByteCount: Int64(data.count))
             print(string)
+            /// remove temp file
+            try FileManager.default.removeItem(at: tempFileURL)
         } catch {
             fatalError()
         }
