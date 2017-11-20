@@ -31,6 +31,16 @@ class ConcurrentAudioFetch {
         return url.appendingPathComponent("audio.ts")
     }()
     
+    let newTempFileURL: URL = {
+        let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last!
+        return url.appendingPathComponent("newAudio.ts")
+    }()
+    
+    let mp4FileURL: URL = {
+        let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last!
+        return url.appendingPathComponent("audio.mp4")
+    }()
+    
     var completion: FetchCompletion?
     var progressUpdate: FetchProgressUpdate?
     
@@ -138,8 +148,18 @@ class ConcurrentAudioFetch {
             bcf.countStyle = .file
             let string = bcf.string(fromByteCount: Int64(data.count))
             print(string)
-            /// remove temp file
-            try FileManager.default.removeItem(at: tempFileURL)
+            
+            let mpegConverter = FFmpegWrapper()
+            let options: [String: String] = [kFFmpegInputFormatKey: "ts", kFFmpegOutputFormatKey: "mp4"]
+            mpegConverter.convertInputPath(tempFileURL.relativePath, outputPath: mp4FileURL.relativePath, options: options, progressBlock: { (_, _, _) in
+                
+            }, completionBlock: { _,_ in
+                
+                /// remove temp file
+                try? FileManager.default.removeItem(at: self.tempFileURL)
+                self.completion?(self.mp4FileURL)
+            })
+            
         } catch {
             fatalError()
         }
@@ -165,6 +185,17 @@ class ConcurrentAudioFetch {
             print("Could not write to file")
             completion?(nil)
         }
+        
+    }
+    
+    func convert() {
+        let mpegConverter = FFmpegWrapper()
+        let options: [String: String] = [kFFmpegInputFormatKey: "ts", kFFmpegOutputFormatKey: "mp4"]
+        mpegConverter.convertInputPath(tempFileURL.relativePath, outputPath: mp4FileURL.relativePath, options: options, progressBlock: { (_, _, _) in
+            
+        }, completionBlock: {_,_ in
+            
+        })
         
     }
 }
