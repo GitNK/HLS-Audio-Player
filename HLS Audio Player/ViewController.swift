@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import AVFoundation
 
 class ViewController: UIViewController {
+    
+    var player: AVPlayer!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,8 +30,12 @@ class ViewController: UIViewController {
     func fetchAudio() {
         
         let service = ConcurrentAudioFetch()
+        //service.convert()
         service.fetchAudio(completion: { (audioURL) in
-            
+            if let audioURL = audioURL {
+                self.player = AVPlayer(url: audioURL)
+                self.player.play()
+            }
         }) { (progress) in
             print("Donwloaded: \(progress)")
         }
