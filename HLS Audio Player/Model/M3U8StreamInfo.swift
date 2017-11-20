@@ -14,8 +14,17 @@ struct M3U8StreamInfo {
     var bandwidth: Int
     var audio: String?
     var uri: URL?
+    var codecs: [String]?
+    var baseURL: URL?
     
     init(dictionary: [String: String]) {
+        
+        if let baseURLString = dictionary[Constants.M3U8Playlist.baseURL],
+            let baseURL = URL(string: baseURLString),
+            let uriString = dictionary[Constants.M3U8Playlist.uri] {
+            self.baseURL = baseURL
+            self.uri = URL(string: uriString, relativeTo: baseURL)
+        }
         
         if let resolutionString = dictionary[Constants.M3U8Playlist.resolution],
             case let components = resolutionString.components(separatedBy: "x"), components.count == 2 {
@@ -34,8 +43,6 @@ struct M3U8StreamInfo {
         }
         
         self.audio = dictionary[Constants.M3U8Playlist.audio]
-        if let uriString = dictionary[Constants.M3U8Playlist.uri] {
-            self.uri = URL(string: uriString)
-        }
+        self.codecs = dictionary[Constants.M3U8Playlist.codecs]?.components(separatedBy: ",")
     }
 }

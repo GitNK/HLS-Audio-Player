@@ -11,7 +11,7 @@ import Foundation
 struct M3U8Playlist {
     
     var originalURL: URL?
-    let baseURL: URL
+    var baseURL: URL?
     
     var masterPlaylist: M3U8MasterPlaylist?
     
@@ -26,26 +26,43 @@ struct M3U8Playlist {
         guard let content = try? String(contentsOf: url, encoding: .utf8) else {
             return nil
         }
-        self.init(content: content, baseURL: baseURL)
-        originalURL = url
+        self.init(content: content, baseURL: baseURL, originalURL: url)
     }
     /// init with playlist `content` and `baseURL`
     /// returns `nil` if `content` is of invalid format
-    init?(content: String, baseURL: URL) {
+    init?(content: String, baseURL: URL, originalURL: URL) {
         guard content.isExtendedM3UFile else {
             return nil
         }
         self.baseURL = baseURL
-        
+        self.originalURL = originalURL
         if content.isMasterPlaylist {
             
-            self.masterPlaylist = M3U8MasterPlaylist(content: content, baseURL: baseURL)
-            self.audioPlaylist = M3U8MediaPlaylist()
-            self.mainMediaPlaylist = M3U8MediaPlaylist()
+            self.masterPlaylist = M3U8MasterPlaylist(content: content,
+                                                     baseURL: baseURL)
+            
+            if let currentStream = masterPlaylist?.streamList.first,
+                let m3u8URL = currentStream.uri {
+                
+                self.mainMediaPlaylist = M3U8MediaPlaylist(url: m3u8URL)
+            }
+            
+            // get audio playlist
+            for stream in masterPlaylist!.streamList {
+                if let codecs = stream.codecs,
+                    codecs.count == 1,
+                    codecs.first?.hasPrefix("mp4a") == true,
+                    let audioURL = stream.uri {
+                    self.audioPlaylist = M3U8MediaPlaylist(url: audioURL)
+                    break
+                }
+            }
+            
+            
             
         } else if content.isMediaPlaylist {
             
-            self.mainMediaPlaylist = M3U8MediaPlaylist()
+            self.mainMediaPlaylist = M3U8MediaPlaylist(url: originalURL)
         }
         
         

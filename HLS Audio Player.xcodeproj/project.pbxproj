@@ -17,6 +17,8 @@
 		4C516A9A1FC1F6DD004BA565 /* M3U8StreamInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C516A991FC1F6DD004BA565 /* M3U8StreamInfo.swift */; };
 		4C516A9D1FC21CEA004BA565 /* UtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C516A9C1FC21CEA004BA565 /* UtilsTests.swift */; };
 		4C516A9F1FC23EF6004BA565 /* M3U8MediaInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C516A9E1FC23EF6004BA565 /* M3U8MediaInfo.swift */; };
+		4C516AA11FC24BBB004BA565 /* M3U8MediaPlaylistTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C516AA01FC24BBB004BA565 /* M3U8MediaPlaylistTests.swift */; };
+		4C516AA31FC24D91004BA565 /* M3U8SegmentInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C516AA21FC24D91004BA565 /* M3U8SegmentInfo.swift */; };
 		4CE001D91FC0C09900740A5E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE001D81FC0C09900740A5E /* AppDelegate.swift */; };
 		4CE001DB1FC0C09900740A5E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE001DA1FC0C09900740A5E /* ViewController.swift */; };
 		4CE001DE1FC0C09900740A5E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4CE001DC1FC0C09900740A5E /* Main.storyboard */; };
@@ -45,6 +47,8 @@
 		4C516A991FC1F6DD004BA565 /* M3U8StreamInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = M3U8StreamInfo.swift; sourceTree = "<group>"; };
 		4C516A9C1FC21CEA004BA565 /* UtilsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilsTests.swift; sourceTree = "<group>"; };
 		4C516A9E1FC23EF6004BA565 /* M3U8MediaInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = M3U8MediaInfo.swift; sourceTree = "<group>"; };
+		4C516AA01FC24BBB004BA565 /* M3U8MediaPlaylistTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = M3U8MediaPlaylistTests.swift; sourceTree = "<group>"; };
+		4C516AA21FC24D91004BA565 /* M3U8SegmentInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = M3U8SegmentInfo.swift; sourceTree = "<group>"; };
 		4CE001D51FC0C09900740A5E /* HLS Audio Player.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HLS Audio Player.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CE001D81FC0C09900740A5E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4CE001DA1FC0C09900740A5E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -79,6 +83,7 @@
 			children = (
 				4C516A881FC1AA99004BA565 /* M3U8PlaylistTests.swift */,
 				4C516A971FC1EE39004BA565 /* M3U8MasterPlaylistTests.swift */,
+				4C516AA01FC24BBB004BA565 /* M3U8MediaPlaylistTests.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -89,6 +94,7 @@
 				4C516A8C1FC1AF1C004BA565 /* M3U8Playlist.swift */,
 				4C516A931FC1E2CE004BA565 /* M3U8MasterPlaylist.swift */,
 				4C516A951FC1E2DF004BA565 /* M3U8MediaPlaylist.swift */,
+				4C516AA21FC24D91004BA565 /* M3U8SegmentInfo.swift */,
 				4C516A991FC1F6DD004BA565 /* M3U8StreamInfo.swift */,
 				4C516A9E1FC23EF6004BA565 /* M3U8MediaInfo.swift */,
 				4C516A8E1FC1C0EB004BA565 /* Constants.swift */,
@@ -264,6 +270,7 @@
 				4C516A961FC1E2DF004BA565 /* M3U8MediaPlaylist.swift in Sources */,
 				4C516A8D1FC1AF1C004BA565 /* M3U8Playlist.swift in Sources */,
 				4C516A9A1FC1F6DD004BA565 /* M3U8StreamInfo.swift in Sources */,
+				4C516AA31FC24D91004BA565 /* M3U8SegmentInfo.swift in Sources */,
 				4C516A8F1FC1C0EB004BA565 /* Constants.swift in Sources */,
 				4CE001DB1FC0C09900740A5E /* ViewController.swift in Sources */,
 				4CE001D91FC0C09900740A5E /* AppDelegate.swift in Sources */,
@@ -275,6 +282,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C516A981FC1EE39004BA565 /* M3U8MasterPlaylistTests.swift in Sources */,
+				4C516AA11FC24BBB004BA565 /* M3U8MediaPlaylistTests.swift in Sources */,
 				4C516A891FC1AA99004BA565 /* M3U8PlaylistTests.swift in Sources */,
 				4C516A9D1FC21CEA004BA565 /* UtilsTests.swift in Sources */,
 			);

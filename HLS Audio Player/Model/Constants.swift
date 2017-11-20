@@ -26,5 +26,7 @@ struct Constants {
         static let audio: String = "AUDIO"
         static let mediaType: String = "TYPE"
         static let groupID: String = "GROUP-ID"
+        static let codecs: String = "CODECS"
+        static let byteRange: String = "#EXT-X-BYTERANGE:"
     }
 }

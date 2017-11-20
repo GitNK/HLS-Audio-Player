@@ -31,7 +31,7 @@ class M3U8PlaylistTests: XCTestCase {
     }
     
     func test_Init_WhenGivenURL_SetsOriginalURL() {
-        let playlist = M3U8Playlist(url: masterURL)!
+        let playlist = M3U8Playlist(url: URL(string: "http://pubcache1.arkiva.de/test/hls_index.m3u8")!)!
         XCTAssertEqual(playlist.originalURL, masterURL, "Should set original URL")
     }
     
@@ -42,19 +42,19 @@ class M3U8PlaylistTests: XCTestCase {
     
     func test_Init_WhenGivenValidContent_ReturnsInstance() {
         let m3u8Content = Constants.M3U8Playlist.identifier
-        XCTAssertNotNil(M3U8Playlist(content: m3u8Content, baseURL: masterURL.deletingLastPathComponent()), "Should init with valid content")
+        XCTAssertNotNil(M3U8Playlist(content: m3u8Content, baseURL: masterURL.deletingLastPathComponent(), originalURL: masterURL), "Should init with valid content")
     }
     
     func test_Init_WhenGivenInvalidContent_ReturnsNil() {
         let invalidContent = "This is not a valid content for M3U8 Playlist"
-        XCTAssertNil(M3U8Playlist(content: invalidContent, baseURL: masterURL.deletingLastPathComponent()), "Should return nil on invalid content")
+        XCTAssertNil(M3U8Playlist(content: invalidContent, baseURL: masterURL.deletingLastPathComponent(), originalURL: masterURL), "Should return nil on invalid content")
     }
     
     func test_Init_WhenGivenMasterPlaylist_SetsMasterPlaylist() {
         let playlist = M3U8Playlist(url: masterURL)!
         XCTAssertNotNil(playlist.mainMediaPlaylist, "Should set mainMedia playlist")
         XCTAssertNotNil(playlist.masterPlaylist, "Should set mainMedia playlist")
-        XCTAssertNotNil(playlist.audioPlaylist, "Should set audio playlist")
+        XCTAssertNil(playlist.audioPlaylist, "Should not set audio playlist")
     }
     
     func test_Init_WhenGivenMediaPlaylist_SetsMediaPlaylist() {
@@ -63,5 +63,4 @@ class M3U8PlaylistTests: XCTestCase {
         XCTAssertNil(playlist.masterPlaylist, "Should not set mainMedia playlist")
         XCTAssertNil(playlist.audioPlaylist, "Should not set audio playlist")
     }
-    
 }

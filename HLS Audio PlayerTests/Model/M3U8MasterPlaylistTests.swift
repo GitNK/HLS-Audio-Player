@@ -76,7 +76,7 @@ class M3U8MasterPlaylistTests: XCTestCase {
     }
     
     func test_StreamListFirstItemURI() {
-        XCTAssertEqual(masterPlaylist.streamList.first?.uri, URL(string: "v5/prog_index.m3u8"), "URI of first stream should be v5/prog_index.m3u8")
+        XCTAssertEqual(masterPlaylist.streamList.first?.uri, URL(string: "v5/prog_index.m3u8", relativeTo: masterURL.deletingLastPathComponent()), "URI of first stream should be v5/prog_index.m3u8")
     }
     
     func test_MediaListCount_Is5() {
