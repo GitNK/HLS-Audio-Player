@@ -26,21 +26,6 @@ class ConcurrentAudioFetch {
         return session
     }()
     
-    let tempFileURL: URL = {
-       let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last!
-        return url.appendingPathComponent("audio.ts")
-    }()
-    
-    let newTempFileURL: URL = {
-        let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last!
-        return url.appendingPathComponent("newAudio.ts")
-    }()
-    
-    let mp4FileURL: URL = {
-        let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last!
-        return url.appendingPathComponent("audio.mp4")
-    }()
-    
     var completion: FetchCompletion?
     var progressUpdate: FetchProgressUpdate?
     
@@ -114,11 +99,14 @@ class ConcurrentAudioFetch {
         if let pairToDownload = bytePairs.popLast() {
             
             for (index, byteRange) in pairToDownload.enumerated() {
+                
                 self.requestQueue.async {
+                    
                     var request = URLRequest(url: self.segmentURI)
                     request.addValue("bytes=\(byteRange.0)-\(byteRange.1)", forHTTPHeaderField: "Range")
                     
                     self.session.dataTask(with: request) { data,response,error in
+                        
                         self.responseQueue.async {
                             // add to dowloaded data
                             self.downloadedData[index] = data
@@ -132,37 +120,26 @@ class ConcurrentAudioFetch {
                                 self.nextPair()
                             }
                         }
-                        }.resume()
+                    }.resume()
                 }
             }
         } else {
             self.finalize()
         }
     }
-    
+    /// convert and call completion handler
     func finalize() {
-        do {
-            let data = try Data(contentsOf: tempFileURL)
-            let bcf = ByteCountFormatter()
-            bcf.allowedUnits = [.useMB] // optional: restricts the units to MB only
-            bcf.countStyle = .file
-            let string = bcf.string(fromByteCount: Int64(data.count))
-            print(string)
-            
-            let mpegConverter = FFmpegWrapper()
-            let options: [String: String] = [kFFmpegInputFormatKey: "ts", kFFmpegOutputFormatKey: "mp4"]
-            mpegConverter.convertInputPath(tempFileURL.relativePath, outputPath: mp4FileURL.relativePath, options: options, progressBlock: { (_, _, _) in
-                
-            }, completionBlock: { _,_ in
-                
-                /// remove temp file
-                try? FileManager.default.removeItem(at: self.tempFileURL)
-                self.completion?(self.mp4FileURL)
-            })
-            
-        } catch {
-            fatalError()
-        }
+        
+        let mpegConverter = FFmpegWrapper()
+        let options: [String: String] = [kFFmpegInputFormatKey: "ts", kFFmpegOutputFormatKey: "mp4"]
+        mpegConverter.convertInputPath(FileService.tempFileURL.relativePath,
+                                       outputPath: FileService.mp4FileURL.relativePath,
+                                       options: options, progressBlock: { (_, _, _) in
+        }, completionBlock: { _,_ in
+            /// remove temp file
+            FileService.removeTempFile()
+            self.completion?(FileService.mp4FileURL)
+        })
     }
     
     func incrementDownloadedSegments() {
@@ -179,23 +156,12 @@ class ConcurrentAudioFetch {
         }
         /// write to file
         do {
-            try data.append(fileURL: tempFileURL)
+            try data.append(fileURL: FileService.tempFileURL)
         }
         catch {
             print("Could not write to file")
             completion?(nil)
         }
-        
-    }
-    
-    func convert() {
-        let mpegConverter = FFmpegWrapper()
-        let options: [String: String] = [kFFmpegInputFormatKey: "ts", kFFmpegOutputFormatKey: "mp4"]
-        mpegConverter.convertInputPath(tempFileURL.relativePath, outputPath: mp4FileURL.relativePath, options: options, progressBlock: { (_, _, _) in
-            
-        }, completionBlock: {_,_ in
-            
-        })
         
     }
 }

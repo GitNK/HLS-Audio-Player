@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4C0A870E1FC3541E00D3D093 /* FFMPEGConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0A870D1FC3541E00D3D093 /* FFMPEGConverter.m */; };
+		4C3A2EDC1FC39682000AC962 /* FileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A2EDB1FC39682000AC962 /* FileService.swift */; };
 		4C446BD01FC378C500C41D62 /* libavdevice.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C446BC91FC378BF00C41D62 /* libavdevice.a */; };
 		4C446BD11FC378C500C41D62 /* libswscale.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C446BCA1FC378BF00C41D62 /* libswscale.a */; };
 		4C446BD21FC378C500C41D62 /* libavcodec.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C446BCB1FC378C300C41D62 /* libavcodec.a */; };
@@ -63,7 +63,7 @@
 
 /* Begin PBXFileReference section */
 		4C0A870C1FC3541E00D3D093 /* HLS Audio Player-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HLS Audio Player-Bridging-Header.h"; sourceTree = "<group>"; };
-		4C0A870D1FC3541E00D3D093 /* FFMPEGConverter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = FFMPEGConverter.m; path = "HLS Audio Player/FFMPEGConverter.m"; sourceTree = "<group>"; };
+		4C3A2EDB1FC39682000AC962 /* FileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileService.swift; sourceTree = "<group>"; };
 		4C446BC91FC378BF00C41D62 /* libavdevice.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libavdevice.a; sourceTree = "<group>"; };
 		4C446BCA1FC378BF00C41D62 /* libswscale.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libswscale.a; sourceTree = "<group>"; };
 		4C446BCB1FC378C300C41D62 /* libavcodec.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libavcodec.a; sourceTree = "<group>"; };
@@ -88,7 +88,6 @@
 		4C516AA21FC24D91004BA565 /* M3U8SegmentInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = M3U8SegmentInfo.swift; sourceTree = "<group>"; };
 		4C51CDB71FC2C7FA00414CEA /* ConcurrentAudioFetch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcurrentAudioFetch.swift; sourceTree = "<group>"; };
 		4C51CDB91FC2DBD300414CEA /* Data+writeToFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+writeToFile.swift"; sourceTree = "<group>"; };
-		4C8B92B81FC35AD800F66DF4 /* FFMPEGConverter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FFMPEGConverter.h; path = "HLS Audio Player/FFMPEGConverter.h"; sourceTree = "<group>"; };
 		4C8B92D61FC3613300F66DF4 /* FFmpegWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFmpegWrapper.h; sourceTree = "<group>"; };
 		4C8B92D71FC3613300F66DF4 /* FFmpegWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFmpegWrapper.m; sourceTree = "<group>"; };
 		4C8B92D91FC3617A00F66DF4 /* FFBitstreamFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFBitstreamFilter.h; sourceTree = "<group>"; };
@@ -181,6 +180,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		4C45CCBF1FC394DC0020E69C /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				4C8B92B91FC35DEA00F66DF4 /* FFmpegWrapper */,
+				4C0A87111FC355F100D3D093 /* lib */,
+			);
+			path = Libraries;
+			sourceTree = "<group>";
+		};
 		4C516A8A1FC1AC52004BA565 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -226,6 +234,7 @@
 			isa = PBXGroup;
 			children = (
 				4C51CDB71FC2C7FA00414CEA /* ConcurrentAudioFetch.swift */,
+				4C3A2EDB1FC39682000AC962 /* FileService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -263,9 +272,6 @@
 				4CE001D71FC0C09900740A5E /* HLS Audio Player */,
 				4CE001EC1FC0C09900740A5E /* HLS Audio PlayerTests */,
 				4CE001D61FC0C09900740A5E /* Products */,
-				4C0A870D1FC3541E00D3D093 /* FFMPEGConverter.m */,
-				4C8B92B91FC35DEA00F66DF4 /* FFmpegWrapper */,
-				4C8B92B81FC35AD800F66DF4 /* FFMPEGConverter.h */,
 				4C0A870C1FC3541E00D3D093 /* HLS Audio Player-Bridging-Header.h */,
 				4C0A87201FC357F500D3D093 /* Frameworks */,
 			);
@@ -283,7 +289,7 @@
 		4CE001D71FC0C09900740A5E /* HLS Audio Player */ = {
 			isa = PBXGroup;
 			children = (
-				4C0A87111FC355F100D3D093 /* lib */,
+				4C45CCBF1FC394DC0020E69C /* Libraries */,
 				4C516A921FC1C1A3004BA565 /* Extensions */,
 				4C516A8B1FC1AF04004BA565 /* Model */,
 				4C51CDB61FC2C7B900414CEA /* Services */,
@@ -426,13 +432,13 @@
 				4C516A9A1FC1F6DD004BA565 /* M3U8StreamInfo.swift in Sources */,
 				4C51CDB81FC2C7FA00414CEA /* ConcurrentAudioFetch.swift in Sources */,
 				4C516AA31FC24D91004BA565 /* M3U8SegmentInfo.swift in Sources */,
+				4C3A2EDC1FC39682000AC962 /* FileService.swift in Sources */,
 				4C8B92ED1FC361ED00F66DF4 /* FFInputFile.m in Sources */,
 				4C8B92E41FC361AD00F66DF4 /* FFStream.m in Sources */,
 				4C516A8F1FC1C0EB004BA565 /* Constants.swift in Sources */,
 				4CE001DB1FC0C09900740A5E /* ViewController.swift in Sources */,
 				4CE001D91FC0C09900740A5E /* AppDelegate.swift in Sources */,
 				4C8B92F31FC3621400F66DF4 /* FFInputStream.m in Sources */,
-				4C0A870E1FC3541E00D3D093 /* FFMPEGConverter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -597,7 +603,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/HLS\\ Audio\\ Player/lib",
+					"\"$(SRCROOT)/HLS Audio Player/Libraries/lib\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ngromadskyi.HLS-Audio-Player";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -621,7 +627,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/HLS\\ Audio\\ Player/lib",
+					"\"$(SRCROOT)/HLS Audio Player/Libraries/lib\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ngromadskyi.HLS-Audio-Player";
 				PRODUCT_NAME = "$(TARGET_NAME)";
