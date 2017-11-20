@@ -26,14 +26,32 @@ class ConcurrentAudioFetch {
         return session
     }()
     
+    let tempFileURL: URL = {
+       let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last!
+        return url.appendingPathComponent("audio.ts")
+    }()
+    
     var completion: FetchCompletion?
     var progressUpdate: FetchProgressUpdate?
     
     var segmentURI: URL!
     
     var bytePairs: [[(Int, Int)]]!
-    var downloadedPairs: [[(Int, Int)]]!
-    var currentPair = [(Int, Int)]()
+    /// currently downloaded data
+    var downloadedData = [Int: Data]()
+    
+    var totalNumberOfSegments: Int! {
+        didSet {
+            print("total num: \(totalNumberOfSegments)")
+        }
+    }
+    var segmentsDownloaded: Int! {
+        didSet {
+            /// update progress
+            progressUpdate?(CGFloat(segmentsDownloaded)/CGFloat(totalNumberOfSegments))
+            print("downloaded: \(segmentsDownloaded)")
+        }
+    }
     
     func initAudioSegmentsData() -> Bool {
         
@@ -44,6 +62,8 @@ class ConcurrentAudioFetch {
         self.segmentURI = segmentURI
         
         let byteRanges = audioSegments.flatMap ({ $0.byteRange }).map ({($0.1, $0.1 + $0.0 - 1)})
+        
+        self.totalNumberOfSegments = byteRanges.count
         
         /// create pairs for concurrent requests
         let byteRangePairs = byteRanges.reduce( [[(Int, Int)]]() ) { result, current in
@@ -73,14 +93,14 @@ class ConcurrentAudioFetch {
             handler(nil)
             return
         }
-        self.downloadedPairs = []
+        self.segmentsDownloaded = 0
         self.nextPair()
     }
     
     func nextPair() {
     
-        /// reset current pair
-        self.currentPair = []
+        /// reset downloaded data
+        self.downloadedData = [:]
         if let pairToDownload = bytePairs.popLast() {
             
             for (index, byteRange) in pairToDownload.enumerated() {
@@ -90,14 +110,17 @@ class ConcurrentAudioFetch {
                     
                     self.session.dataTask(with: request) { data,response,error in
                         self.responseQueue.async {
-                            // add to current pair
-                            self.currentPair = self.currentPair + [byteRange]
-                            if self.currentPair.count == 2 {
-                                // concatenate and go to next pair
-                                self.nextPair()
-                            }
+                            // add to dowloaded data
+                            self.downloadedData[index] = data
+                            self.incrementDownloadedSegments()
                             let response = response as! HTTPURLResponse
                             debugPrint("Full request with response: \(response.statusCode) \(response.allHeaderFields["Content-Range"] ?? "")")
+                            if self.downloadedData.count == 2 || (self.segmentsDownloaded == self.totalNumberOfSegments) {
+                                // concatenate and save downloaded data
+                                self.saveDownloadedData()
+                                // go to next pair
+                                self.nextPair()
+                            }
                         }
                         }.resume()
                 }
@@ -108,6 +131,38 @@ class ConcurrentAudioFetch {
     }
     
     func finalize() {
+        do {
+            let data = try Data(contentsOf: tempFileURL)
+            let bcf = ByteCountFormatter()
+            bcf.allowedUnits = [.useMB] // optional: restricts the units to MB only
+            bcf.countStyle = .file
+            let string = bcf.string(fromByteCount: Int64(data.count))
+            print(string)
+        } catch {
+            fatalError()
+        }
+    }
+    
+    func incrementDownloadedSegments() {
+        segmentsDownloaded = segmentsDownloaded + 1
+    }
+    
+    func saveDownloadedData() {
+        
+        /// concatanate downloaded data
+        var data = Data()
+        let sortedKeyVals = downloadedData.sorted { $0.0 < $1.0 }
+        for keyVal in sortedKeyVals {
+            data.append(keyVal.value)
+        }
+        /// write to file
+        do {
+            try data.append(fileURL: tempFileURL)
+        }
+        catch {
+            print("Could not write to file")
+            completion?(nil)
+        }
         
     }
 }

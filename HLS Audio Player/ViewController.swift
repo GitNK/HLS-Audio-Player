@@ -30,7 +30,7 @@ class ViewController: UIViewController {
         service.fetchAudio(completion: { (audioURL) in
             
         }) { (progress) in
-            
+            print("Donwloaded: \(progress)")
         }
     }
 }
