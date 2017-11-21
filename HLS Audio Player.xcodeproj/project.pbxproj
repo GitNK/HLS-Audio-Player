@@ -51,6 +51,7 @@
 		4CE001E01FC0C09900740A5E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4CE001DF1FC0C09900740A5E /* Assets.xcassets */; };
 		4CE001E31FC0C09900740A5E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4CE001E11FC0C09900740A5E /* LaunchScreen.storyboard */; };
 		65CAB5D31FC43C3C009F057D /* CGVector+angle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65CAB5D21FC43C3C009F057D /* CGVector+angle.swift */; };
+		65D4434C1FC475D4000741D2 /* SnappableViewConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D4434B1FC475D4000741D2 /* SnappableViewConfigurator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -122,6 +123,7 @@
 		4CE001E91FC0C09900740A5E /* HLS Audio PlayerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "HLS Audio PlayerTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CE001EF1FC0C09900740A5E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		65CAB5D21FC43C3C009F057D /* CGVector+angle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGVector+angle.swift"; sourceTree = "<group>"; };
+		65D4434B1FC475D4000741D2 /* SnappableViewConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnappableViewConfigurator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -238,6 +240,7 @@
 			children = (
 				4C51CDB71FC2C7FA00414CEA /* ConcurrentAudioFetch.swift */,
 				4C3A2EDB1FC39682000AC962 /* FileService.swift */,
+				65D4434B1FC475D4000741D2 /* SnappableViewConfigurator.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -436,6 +439,7 @@
 				4C516A961FC1E2DF004BA565 /* M3U8MediaPlaylist.swift in Sources */,
 				4C51CDBA1FC2DBD300414CEA /* Data+writeToFile.swift in Sources */,
 				4C8B92E11FC3617C00F66DF4 /* FFBitstreamFilter.m in Sources */,
+				65D4434C1FC475D4000741D2 /* SnappableViewConfigurator.swift in Sources */,
 				4C516A8D1FC1AF1C004BA565 /* M3U8Playlist.swift in Sources */,
 				4C8B92E71FC361BE00F66DF4 /* FFFile.m in Sources */,
 				4C8B92DF1FC3617C00F66DF4 /* FFOutputFile.m in Sources */,

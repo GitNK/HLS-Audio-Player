@@ -29,6 +29,7 @@ class CirclePlayer: UIView {
     let activityIndicator: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView()
         indicator.translatesAutoresizingMaskIntoConstraints = false
+        indicator.color = .black
         return indicator
     }()
     
