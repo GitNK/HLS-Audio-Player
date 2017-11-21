@@ -204,7 +204,7 @@ class SnappableViewConfigurator {
         case (.topLeft, 0),
              (.topRight, (-90)...0),
              (.bottomLeft, (-89)...(-30)),
-             (.bottomRight, (-91)...0):
+             (.bottomRight, (-91)...1):
             return edge(for: .topRight)
         /// bottomLeft
         case (.topLeft, 90),
@@ -214,7 +214,7 @@ class SnappableViewConfigurator {
             return edge(for: .bottomLeft)
         /// bottomRight
         case (.topLeft, 20...89),
-             (.topRight, 90),
+             (.topRight, 1...90),
              (.bottomLeft, 0),
              (.bottomRight, (-90)...0):
             return edge(for: .bottomRight)
