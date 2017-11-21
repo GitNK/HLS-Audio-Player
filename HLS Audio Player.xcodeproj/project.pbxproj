@@ -50,6 +50,7 @@
 		4CE001DE1FC0C09900740A5E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4CE001DC1FC0C09900740A5E /* Main.storyboard */; };
 		4CE001E01FC0C09900740A5E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4CE001DF1FC0C09900740A5E /* Assets.xcassets */; };
 		4CE001E31FC0C09900740A5E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4CE001E11FC0C09900740A5E /* LaunchScreen.storyboard */; };
+		65CAB5D31FC43C3C009F057D /* CGVector+angle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65CAB5D21FC43C3C009F057D /* CGVector+angle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -120,6 +121,7 @@
 		4CE001E41FC0C09900740A5E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4CE001E91FC0C09900740A5E /* HLS Audio PlayerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "HLS Audio PlayerTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CE001EF1FC0C09900740A5E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		65CAB5D21FC43C3C009F057D /* CGVector+angle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGVector+angle.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -218,6 +220,7 @@
 			children = (
 				4C516A901FC1C19E004BA565 /* String+m3u8.swift */,
 				4C51CDB91FC2DBD300414CEA /* Data+writeToFile.swift */,
+				65CAB5D21FC43C3C009F057D /* CGVector+angle.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -438,6 +441,7 @@
 				4C8B92DF1FC3617C00F66DF4 /* FFOutputFile.m in Sources */,
 				4CD505F21FC399DB002AE8DB /* CirclePlayer.swift in Sources */,
 				4C516A9A1FC1F6DD004BA565 /* M3U8StreamInfo.swift in Sources */,
+				65CAB5D31FC43C3C009F057D /* CGVector+angle.swift in Sources */,
 				4C51CDB81FC2C7FA00414CEA /* ConcurrentAudioFetch.swift in Sources */,
 				4C516AA31FC24D91004BA565 /* M3U8SegmentInfo.swift in Sources */,
 				4C3A2EDC1FC39682000AC962 /* FileService.swift in Sources */,

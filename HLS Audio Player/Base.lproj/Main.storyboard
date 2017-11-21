@@ -40,10 +40,10 @@
                         </subviews>
                         <color key="backgroundColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="XSm-az-k4T" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="dnw-O5-Om9"/>
+                            <constraint firstItem="XSm-az-k4T" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" placeholder="YES" id="dnw-O5-Om9"/>
                             <constraint firstItem="XSm-az-k4T" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="fcb-V4-C47"/>
                             <constraint firstItem="XSm-az-k4T" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="hPg-PZ-bT5"/>
-                            <constraint firstItem="XSm-az-k4T" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="l8Q-q0-Om1"/>
+                            <constraint firstItem="XSm-az-k4T" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" placeholder="YES" id="l8Q-q0-Om1"/>
                         </constraints>
                     </view>
                     <connections>
