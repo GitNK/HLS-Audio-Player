@@ -20,7 +20,7 @@ enum State {
 class ViewController: UIViewController {
     
     let throwingThreshold: CGFloat = 1000
-    let throwingVelocityPadding: CGFloat = 35
+    let throwingVelocityPadding: CGFloat = 1
     
     var state: State = .uninitialized {
         didSet {
@@ -118,6 +118,8 @@ class ViewController: UIViewController {
             
             pushBehavior.magnitude = magnitude / throwingVelocityPadding
             self.pushBehavior = pushBehavior
+
+            animator.addBehavior(collision)
             animator.addBehavior(pushBehavior)
             // detect edge to snap
             let snapPoint = screenEdgeDirected(by: direction.angle, from: location)
@@ -125,10 +127,9 @@ class ViewController: UIViewController {
             // snap to appropriate edge
             snapBehaviour = UISnapBehavior(item: circlePlayer, snapTo: normalizedCenter(snapPoint))
             
-            
+            animator.removeBehavior(pushBehavior)
             animator.addBehavior(snapBehaviour)
             
-            //animator.addBehavior(collision)
             
         } else {
             
