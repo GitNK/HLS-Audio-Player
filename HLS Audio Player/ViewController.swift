@@ -256,24 +256,24 @@ class ViewController: UIViewController {
         switch (currentSquare, angle) {
             /// topLeft
         case (.topLeft, 180), (.topLeft, (-179)...(-91)),
-             (.topRight, 180),
+             (.topRight, 180), (.topRight, (-179)...(-91)),
              (.bottomLeft, (-135)...(-90)),
              (.bottomRight, (-160)...(-120)):
             return edge(for: .topLeft)
             /// topRight
         case (.topLeft, 0),
              (.topRight, (-90)...0),
-             (.bottomLeft, (-60)...(-30)),
-             (.bottomRight, -90):
+             (.bottomLeft, (-89)...(-30)),
+             (.bottomRight, (-91)...0):
             return edge(for: .topRight)
             /// bottomLeft
         case (.topLeft, 90),
-             (.topRight, 120...160),
+             (.topRight, 91...160),
              (.bottomLeft, 90...180),
              (.bottomRight, 0):
             return edge(for: .bottomLeft)
             /// bottomRight
-        case (.topLeft, 45),
+        case (.topLeft, 20...89),
              (.topRight, 90),
              (.bottomLeft, 0),
              (.bottomRight, (-90)...0):
