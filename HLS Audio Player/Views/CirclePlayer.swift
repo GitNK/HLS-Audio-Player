@@ -11,8 +11,26 @@ import UIKit
 @IBDesignable
 class CirclePlayer: UIView {
     
+    var state: State = .uninitialized {
+        didSet {
+            updateState()
+        }
+    }
+    
     var backgroundRingLayer: CAShapeLayer!
     var downloadProgressRingLayer: CAShapeLayer!
+    
+    let button: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    let activityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView()
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        return indicator
+    }()
     
     @IBInspectable
     var progress: CGFloat = 0.6 {
@@ -26,7 +44,28 @@ class CirclePlayer: UIView {
             updateLineWidth()
         }
     }
-
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        applyInit()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        applyInit()
+    }
+    
+    private func applyInit() {
+        
+        addSubview(button)
+        addSubview(activityIndicator)
+        
+        NSLayoutConstraint(item: self, attribute: .centerX, relatedBy: .equal, toItem: button, attribute: .centerX, multiplier: 1, constant: 0).isActive = true
+        NSLayoutConstraint(item: self, attribute: .centerY, relatedBy: .equal, toItem: button, attribute: .centerY, multiplier: 1, constant: 0).isActive = true
+        
+        NSLayoutConstraint(item: self, attribute: .centerX, relatedBy: .equal, toItem: activityIndicator, attribute: .centerX, multiplier: 1, constant: 0).isActive = true
+        NSLayoutConstraint(item: self, attribute: .centerY, relatedBy: .equal, toItem: activityIndicator, attribute: .centerY, multiplier: 1, constant: 0).isActive = true
+    }
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -72,5 +111,22 @@ class CirclePlayer: UIView {
     func updateLineWidth() {
         downloadProgressRingLayer?.lineWidth = backgroundLineWidth
         backgroundRingLayer?.lineWidth = backgroundLineWidth
+    }
+    
+    func updateState() {
+        switch state {
+        case .uninitialized, .paused:
+            activityIndicator.isHidden = true
+            button.setImage(#imageLiteral(resourceName: "play"), for: .normal)
+            button.isHidden = false
+        case .fetching, .completed:
+            button.isHidden = true
+            activityIndicator.isHidden = false
+            activityIndicator.startAnimating()
+        case .playing:
+            activityIndicator.isHidden = true
+            button.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
+            button.isHidden = false
+        }
     }
 }

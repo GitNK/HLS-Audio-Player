@@ -9,32 +9,31 @@
 import UIKit
 import AVFoundation
 
+enum State {
+    case uninitialized
+    case fetching
+    case playing
+    case paused
+    case completed
+}
+
 class ViewController: UIViewController {
-    
-    enum State {
-        case uninitialized
-        case fetching
-        case playing
-        case paused
-        case completed
-    }
     
     var state: State = .uninitialized {
         didSet {
-            updateState()
+            circlePlayer.state = state
         }
     }
     
-    @IBOutlet var button: UIButton!
-    @IBOutlet var activityIndicator: UIActivityIndicatorView!
     @IBOutlet var circlePlayer: CirclePlayer!
     
     var player: AVPlayer!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateState()
+        circlePlayer.button.addTarget(self, action: #selector(actionPerformed(_:)), for: .touchUpInside)
         circlePlayer.progress = 0.0
+        circlePlayer.state = .uninitialized
     }
 
     override func didReceiveMemoryWarning() {
@@ -42,7 +41,7 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    @IBAction func actionPressed(_ sender: Any) {
+    @objc func actionPerformed(_ sender: Any) {
         switch state {
         case .uninitialized:
             self.state = .fetching
@@ -79,23 +78,6 @@ class ViewController: UIViewController {
                     self.circlePlayer.progress = progress
                 }
             }
-        }
-    }
-    
-    func updateState() {
-        switch state {
-        case .uninitialized, .paused:
-            activityIndicator.isHidden = true
-            button.setImage(#imageLiteral(resourceName: "play"), for: .normal)
-            button.isHidden = false
-        case .fetching, .completed:
-            button.isHidden = true
-            activityIndicator.isHidden = false
-            activityIndicator.startAnimating()
-        case .playing:
-            activityIndicator.isHidden = true
-            button.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
-            button.isHidden = false
         }
     }
 }
