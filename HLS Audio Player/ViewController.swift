@@ -76,6 +76,7 @@ class ViewController: UIViewController {
     }
 
     @objc func actionPerformed(_ sender: Any) {
+
         switch state {
         case .uninitialized:
             self.state = .fetching
@@ -93,16 +94,21 @@ class ViewController: UIViewController {
         }
         
     }
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+    }
     
     @objc func panning(_ recognizer: UIPanGestureRecognizer) {
         let location = recognizer.location(in: view)
         let touchLocation = recognizer.location(in: circlePlayer)
         
-        
         let velocity = recognizer.velocity(in: view)
         let magnitude = sqrt((velocity.x * velocity.x) + (velocity.y * velocity.y))
         
-        if magnitude > throwingThreshold {
+        if magnitude > throwingThreshold && recognizer.state == .ended {
+            
+            animator.removeAllBehaviors()
             
             let pushBehavior = UIPushBehavior(items: [circlePlayer], mode: .instantaneous)
             let direction = CGVector(dx: velocity.x / 10, dy: velocity.y / 10)
@@ -112,20 +118,19 @@ class ViewController: UIViewController {
             
             pushBehavior.magnitude = magnitude / throwingVelocityPadding
             self.pushBehavior = pushBehavior
-            
+            animator.addBehavior(pushBehavior)
             // detect edge to snap
             let snapPoint = screenEdgeDirected(by: direction.angle, from: location)
             
             // snap to appropriate edge
-            snapBehaviour = UISnapBehavior(item: circlePlayer, snapTo: snapPoint)
+            snapBehaviour = UISnapBehavior(item: circlePlayer, snapTo: normalizedCenter(snapPoint))
+            
             
             animator.addBehavior(snapBehaviour)
-            animator.addBehavior(pushBehavior)
+            
             //animator.addBehavior(collision)
             
         } else {
-            
-            animator.removeAllBehaviors()
             
             switch recognizer.state {
                 
@@ -133,7 +138,7 @@ class ViewController: UIViewController {
                 xOFFset = touchLocation.x - circlePlayer.bounds.midX
                 yOFFset = touchLocation.y - circlePlayer.bounds.midY
             case .changed:
-                
+                animator.removeAllBehaviors()
                 var newCenter = CGPoint(x: location.x - xOFFset, y: location.y - yOFFset)
                 let midX = circlePlayer.bounds.midX
                 let midY = circlePlayer.bounds.midY
@@ -149,6 +154,10 @@ class ViewController: UIViewController {
                 if bottom > view.bounds.height { newCenter.y = view.bounds.height - midY }
                 
                 circlePlayer.center = newCenter
+            case .ended:
+                animator.removeAllBehaviors()
+                snapBehaviour = UISnapBehavior(item: circlePlayer, snapTo: circlePlayer.center)
+                animator.addBehavior(snapBehaviour)
             default:
                 break
             }

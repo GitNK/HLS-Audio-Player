@@ -129,4 +129,8 @@ class CirclePlayer: UIView {
             button.isHidden = false
         }
     }
+    
+    override var intrinsicContentSize: CGSize {
+        return CGSize(width: 125, height: 125)
+    }
 }

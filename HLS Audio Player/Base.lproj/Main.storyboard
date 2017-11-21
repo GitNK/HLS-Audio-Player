@@ -25,8 +25,8 @@
                                 <rect key="frame" x="125" y="271" width="125" height="125"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="125" id="RFt-3t-R3o"/>
-                                    <constraint firstAttribute="height" constant="125" id="TIX-Pl-GE3"/>
+                                    <constraint firstAttribute="width" constant="125" placeholder="YES" id="RFt-3t-R3o"/>
+                                    <constraint firstAttribute="height" constant="125" placeholder="YES" id="TIX-Pl-GE3"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="progress">
@@ -40,9 +40,7 @@
                         </subviews>
                         <color key="backgroundColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="XSm-az-k4T" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" placeholder="YES" id="dnw-O5-Om9"/>
-                            <constraint firstItem="XSm-az-k4T" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="fcb-V4-C47"/>
-                            <constraint firstItem="XSm-az-k4T" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="hPg-PZ-bT5"/>
+                            <constraint firstItem="XSm-az-k4T" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" placeholder="YES" id="fcb-V4-C47"/>
                             <constraint firstItem="XSm-az-k4T" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" placeholder="YES" id="l8Q-q0-Om1"/>
                         </constraints>
                     </view>
