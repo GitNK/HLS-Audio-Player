@@ -1,0 +1,76 @@
+//
+//  CirclePlayer.swift
+//  HLS Audio Player
+//
+//  Created by nk on 11/21/17.
+//  Copyright © 2017 Nikita Gromadskyi. All rights reserved.
+//
+
+import UIKit
+
+@IBDesignable
+class CirclePlayer: UIView {
+    
+    var backgroundRingLayer: CAShapeLayer!
+    var downloadProgressRingLayer: CAShapeLayer!
+    
+    @IBInspectable
+    var progress: CGFloat = 0.6 {
+        didSet {
+            updateProgress()
+        }
+    }
+    @IBInspectable
+    var backgroundLineWidth: CGFloat = 10.0 {
+        didSet {
+            updateLineWidth()
+        }
+    }
+
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        if backgroundRingLayer == nil {
+            backgroundRingLayer = CAShapeLayer()
+            layer.addSublayer(backgroundRingLayer)
+            
+            let rect = bounds.insetBy(dx: backgroundLineWidth / 2.0 , dy: backgroundLineWidth / 2.0)
+            let path = UIBezierPath(ovalIn: rect)
+            
+            backgroundRingLayer.path = path.cgPath
+            backgroundRingLayer.fillColor = nil
+            backgroundRingLayer.lineWidth = backgroundLineWidth
+            backgroundRingLayer.strokeColor = #colorLiteral(red: 0.9999960065, green: 1, blue: 1, alpha: 1).cgColor
+        }
+        backgroundRingLayer.frame = layer.bounds
+        
+        if downloadProgressRingLayer == nil {
+            downloadProgressRingLayer = CAShapeLayer()
+            
+            let innerRect = bounds.insetBy(dx: backgroundLineWidth / 2.0, dy: backgroundLineWidth / 2.0)
+            
+            let innerPath = UIBezierPath(ovalIn: innerRect)
+            downloadProgressRingLayer.path = innerPath.cgPath
+            downloadProgressRingLayer.fillColor = nil
+            downloadProgressRingLayer.lineWidth = backgroundLineWidth
+            downloadProgressRingLayer.strokeColor = #colorLiteral(red: 0.2527815998, green: 0.480304122, blue: 0.6649092436, alpha: 1).cgColor
+            downloadProgressRingLayer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+            downloadProgressRingLayer.transform = CATransform3DRotate(downloadProgressRingLayer.transform, -CGFloat.pi/2, 0, 0, 1)
+            layer.addSublayer(downloadProgressRingLayer)
+        }
+        downloadProgressRingLayer.frame = layer.bounds
+        updateProgress()
+    }
+    
+    func updateProgress() {
+        if let _ = downloadProgressRingLayer {
+            downloadProgressRingLayer.strokeEnd = progress
+        }
+    }
+    
+    func updateLineWidth() {
+        downloadProgressRingLayer?.lineWidth = backgroundLineWidth
+        backgroundRingLayer?.lineWidth = backgroundLineWidth
+    }
+}

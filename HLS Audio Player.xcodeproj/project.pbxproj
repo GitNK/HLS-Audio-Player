@@ -44,6 +44,7 @@
 		4C8B93091FC3658500F66DF4 /* libz.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C8B93081FC3658400F66DF4 /* libz.1.dylib */; };
 		4C8B930B1FC3660600F66DF4 /* libbz2.1.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C8B930A1FC3660600F66DF4 /* libbz2.1.0.dylib */; };
 		4C8B930D1FC3662800F66DF4 /* libiconv.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C8B930C1FC3662800F66DF4 /* libiconv.2.dylib */; };
+		4CD505F21FC399DB002AE8DB /* CirclePlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD505F11FC399DB002AE8DB /* CirclePlayer.swift */; };
 		4CE001D91FC0C09900740A5E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE001D81FC0C09900740A5E /* AppDelegate.swift */; };
 		4CE001DB1FC0C09900740A5E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE001DA1FC0C09900740A5E /* ViewController.swift */; };
 		4CE001DE1FC0C09900740A5E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4CE001DC1FC0C09900740A5E /* Main.storyboard */; };
@@ -104,13 +105,12 @@
 		4C8B92E91FC361CE00F66DF4 /* FFUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFUtilities.m; sourceTree = "<group>"; };
 		4C8B92EB1FC361EC00F66DF4 /* FFInputFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFInputFile.h; sourceTree = "<group>"; };
 		4C8B92EC1FC361ED00F66DF4 /* FFInputFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFInputFile.m; sourceTree = "<group>"; };
-		4C8B92EE1FC361FF00F66DF4 /* FFOutputStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FFOutputStream.m; path = "../../../../../../Downloads/FFmpegWrapper-master/FFmpegWrapper/FFOutputStream.m"; sourceTree = "<group>"; };
-		4C8B92EF1FC361FF00F66DF4 /* FFOutputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FFOutputStream.h; path = "../../../../../../Downloads/FFmpegWrapper-master/FFmpegWrapper/FFOutputStream.h"; sourceTree = "<group>"; };
 		4C8B92F11FC3621400F66DF4 /* FFInputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFInputStream.h; sourceTree = "<group>"; };
 		4C8B92F21FC3621400F66DF4 /* FFInputStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFInputStream.m; sourceTree = "<group>"; };
 		4C8B93081FC3658400F66DF4 /* libz.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.dylib; path = ../../../../../../../usr/lib/libz.1.dylib; sourceTree = "<group>"; };
 		4C8B930A1FC3660600F66DF4 /* libbz2.1.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libbz2.1.0.dylib; path = ../../../../../../../usr/lib/libbz2.1.0.dylib; sourceTree = "<group>"; };
 		4C8B930C1FC3662800F66DF4 /* libiconv.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.2.dylib; path = ../../../../../../../usr/lib/libiconv.2.dylib; sourceTree = "<group>"; };
+		4CD505F11FC399DB002AE8DB /* CirclePlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CirclePlayer.swift; path = "HLS Audio Player/Views/CirclePlayer.swift"; sourceTree = SOURCE_ROOT; };
 		4CE001D51FC0C09900740A5E /* HLS Audio Player.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HLS Audio Player.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CE001D81FC0C09900740A5E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4CE001DA1FC0C09900740A5E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -244,8 +244,6 @@
 			children = (
 				4C8B92F11FC3621400F66DF4 /* FFInputStream.h */,
 				4C8B92F21FC3621400F66DF4 /* FFInputStream.m */,
-				4C8B92EF1FC361FF00F66DF4 /* FFOutputStream.h */,
-				4C8B92EE1FC361FF00F66DF4 /* FFOutputStream.m */,
 				4C8B92EB1FC361EC00F66DF4 /* FFInputFile.h */,
 				4C8B92EC1FC361ED00F66DF4 /* FFInputFile.m */,
 				4C8B92E81FC361CE00F66DF4 /* FFUtilities.h */,
@@ -264,6 +262,14 @@
 				4C8B92D71FC3613300F66DF4 /* FFmpegWrapper.m */,
 			);
 			path = FFmpegWrapper;
+			sourceTree = "<group>";
+		};
+		4CD505F31FC399E6002AE8DB /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4CD505F11FC399DB002AE8DB /* CirclePlayer.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		4CE001CC1FC0C09900740A5E = {
@@ -292,6 +298,7 @@
 				4C45CCBF1FC394DC0020E69C /* Libraries */,
 				4C516A921FC1C1A3004BA565 /* Extensions */,
 				4C516A8B1FC1AF04004BA565 /* Model */,
+				4CD505F31FC399E6002AE8DB /* Views */,
 				4C51CDB61FC2C7B900414CEA /* Services */,
 				4CE001D81FC0C09900740A5E /* AppDelegate.swift */,
 				4CE001DA1FC0C09900740A5E /* ViewController.swift */,
@@ -429,6 +436,7 @@
 				4C516A8D1FC1AF1C004BA565 /* M3U8Playlist.swift in Sources */,
 				4C8B92E71FC361BE00F66DF4 /* FFFile.m in Sources */,
 				4C8B92DF1FC3617C00F66DF4 /* FFOutputFile.m in Sources */,
+				4CD505F21FC399DB002AE8DB /* CirclePlayer.swift in Sources */,
 				4C516A9A1FC1F6DD004BA565 /* M3U8StreamInfo.swift in Sources */,
 				4C51CDB81FC2C7FA00414CEA /* ConcurrentAudioFetch.swift in Sources */,
 				4C516AA31FC24D91004BA565 /* M3U8SegmentInfo.swift in Sources */,

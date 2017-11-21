@@ -21,9 +21,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EEn-x4-EdN">
-                                <rect key="frame" x="165" y="318" width="44" height="30"/>
-                                <state key="normal" title="Action"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XSm-az-k4T" customClass="CirclePlayer" customModule="HLS_Audio_Player" customModuleProvider="target">
+                                <rect key="frame" x="125" y="271" width="125" height="125"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="125" id="RFt-3t-R3o"/>
+                                    <constraint firstAttribute="height" constant="125" id="TIX-Pl-GE3"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="progress">
+                                        <real key="value" value="0.5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="backgroundLineWidth">
+                                        <real key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="oKv-Yc-Rkx">
+                                <rect key="frame" x="177" y="323" width="20" height="20"/>
+                            </activityIndicatorView>
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EEn-x4-EdN">
+                                <rect key="frame" x="167.5" y="311" width="40" height="44"/>
+                                <state key="normal" image="play"/>
                                 <connections>
                                     <action selector="actionPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="RwX-ez-zm6"/>
                                 </connections>
@@ -31,13 +50,28 @@
                         </subviews>
                         <color key="backgroundColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="EEn-x4-EdN" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="FX5-ry-NfZ"/>
-                            <constraint firstItem="EEn-x4-EdN" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="MW8-0z-ksx"/>
+                            <constraint firstItem="EEn-x4-EdN" firstAttribute="centerY" secondItem="XSm-az-k4T" secondAttribute="centerY" id="5Eo-sC-4nO"/>
+                            <constraint firstItem="EEn-x4-EdN" firstAttribute="centerX" secondItem="XSm-az-k4T" secondAttribute="centerX" id="XEm-j5-QoK"/>
+                            <constraint firstItem="XSm-az-k4T" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="dnw-O5-Om9"/>
+                            <constraint firstItem="XSm-az-k4T" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="fcb-V4-C47"/>
+                            <constraint firstItem="XSm-az-k4T" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="hPg-PZ-bT5"/>
+                            <constraint firstItem="XSm-az-k4T" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="l8Q-q0-Om1"/>
+                            <constraint firstItem="oKv-Yc-Rkx" firstAttribute="centerX" secondItem="XSm-az-k4T" secondAttribute="centerX" id="tYt-gO-rWH"/>
+                            <constraint firstItem="oKv-Yc-Rkx" firstAttribute="centerY" secondItem="XSm-az-k4T" secondAttribute="centerY" id="yp9-IL-WYJ"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="activityIndicator" destination="oKv-Yc-Rkx" id="X0W-dy-3Xn"/>
+                        <outlet property="button" destination="EEn-x4-EdN" id="Uzv-71-mQM"/>
+                        <outlet property="circlePlayer" destination="XSm-az-k4T" id="Kpk-Um-exB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="136.80000000000001" y="132.68365817091455"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="play" width="40" height="44"/>
+    </resources>
 </document>
